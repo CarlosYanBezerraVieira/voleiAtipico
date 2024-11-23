@@ -5,6 +5,7 @@ import 'package:simple_star_rating/simple_star_rating.dart';
 class VSimpleStarRating extends StatelessWidget {
   final double? size;
   final double rating;
+  final bool isReadOnly;
 
   final void Function(double?)? onRated;
   const VSimpleStarRating({
@@ -12,12 +13,14 @@ class VSimpleStarRating extends StatelessWidget {
     this.size,
     this.onRated,
     required this.rating,
+    this.isReadOnly = true,
   });
 
   @override
   Widget build(BuildContext context) {
     return SimpleStarRating(
-      allowHalfRating: true,
+      isReadOnly: isReadOnly,
+      allowHalfRating: false,
       starCount: 5,
       rating: rating,
       size: size ?? 20,

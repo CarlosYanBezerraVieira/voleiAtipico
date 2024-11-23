@@ -5,11 +5,14 @@ class VPhoto extends StatelessWidget {
   final String pathOfNetwork;
   final String pathOfAsserts;
 
+  final double? borderRadius;
+
   const VPhoto({
     super.key,
     this.size = 60,
     this.pathOfNetwork = "",
     this.pathOfAsserts = "",
+    this.borderRadius,
   });
 
   @override
@@ -18,10 +21,10 @@ class VPhoto extends StatelessWidget {
       width: size,
       height: size,
       decoration: BoxDecoration(
-        shape: BoxShape.circle,
+        borderRadius: BorderRadius.circular(borderRadius ?? 100),
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: pathOfNetwork.isEmpty
+          image: pathOfNetwork.isNotEmpty
               ? NetworkImage(pathOfNetwork)
               : AssetImage(pathOfAsserts),
         ),
