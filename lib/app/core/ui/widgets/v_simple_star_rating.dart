@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:simple_star_rating/simple_star_rating.dart';
+import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
+import 'package:voleiatipico/app/core/ui/theme/app_colors.dart';
 
 class VSimpleStarRating extends StatelessWidget {
   final double? size;
@@ -18,14 +19,18 @@ class VSimpleStarRating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SimpleStarRating(
-      isReadOnly: isReadOnly,
-      allowHalfRating: false,
-      starCount: 5,
+    return SmoothStarRating(
       rating: rating,
       size: size ?? 20,
-      onRated: onRated,
-      spacing: 8,
+      filledIconData: Icons.star,
+      halfFilledIconData: Icons.star_half,
+      defaultIconData: Icons.star_border,
+      starCount: 5,
+      allowHalfRating: true,
+      spacing: 2.0,
+      onRatingChanged: onRated,
+      borderColor: AppColors.yellowPrimary,
+      color: AppColors.yellowPrimary,
     );
   }
 }

@@ -38,9 +38,12 @@ dependencies:
   get_it: ^8.0.2
   routefly: ^2.0.4
   shared_preferences: ^2.3.3
-  simple_star_rating: ^0.0.3
   google_fonts: ^6.2.1
   validatorless: ^1.2.3
+  smooth_star_rating_null_safety: ^1.0.4+2
+
+
+
 
 dev_dependencies:
   flutter_test:
