@@ -40,10 +40,26 @@ class PlayerStore extends ValueNotifier<PlayerState> {
   Future<void> addPlayer(PlayerModel player) async {
     value = value.loading();
     final players = value.players.toList();
-    players.add(player); // Atualiza o estado interno
+    players.add(player.copyWith(
+        id: DateTime.now()
+            .millisecondsSinceEpoch)); // Atualiza o estado interno
     await _savePlayers(players);
     // Salva a lista no armazenamento
     value = value.success(players: players);
+  }
+
+  Future<void> updatePlayer(PlayerModel player) async {
+    try {
+      value = value.loading();
+      final players = value.players.toList();
+
+      final index = players.indexWhere((p) => p.id == player.id);
+      players[index] = player; // Atualiza o estado interno
+      await _savePlayers(players); // Salva a lista no armazenamento
+      value = value.success(players: players);
+    } on Exception catch (e) {
+      value = value.error(e.toString(), e);
+    }
   }
 
   // Função para remover um jogador
@@ -60,18 +76,6 @@ class PlayerStore extends ValueNotifier<PlayerState> {
   }
 
   // Função para atualizar um jogador
-  Future<void> updatePlayer(PlayerModel player) async {
-    try {
-      final players = value.players.toList();
-
-      final index = players.indexWhere((p) => p.id == player.id);
-      players[index] = player; // Atualiza o estado interno
-      await _savePlayers(players); // Salva a lista no armazenamento
-      value = value.success(players: players);
-    } on Exception catch (e) {
-      value = value.error(e.toString(), e);
-    }
-  }
 
   // Função para salvar a lista de jogadores no armazenamento
   Future<void> _savePlayers(List<PlayerModel> players) async {
