@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:routefly/routefly.dart';
-import 'package:voleiatipico/app/core/theme/app_colors.dart';
+import 'package:voleiatipico/app/core/ui/theme/app_colors.dart';
 import 'package:voleiatipico/routes.g.dart';
 
 import 'linear_progress.dart';

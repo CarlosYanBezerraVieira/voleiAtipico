@@ -37,7 +37,7 @@ class AppTextTheme {
     // Corpo do texto
     bodyLarge: GoogleFonts.openSans(
       fontSize: 16.0,
-      fontWeight: FontWeight.normal,
+      fontWeight: FontWeight.w400,
       color: AppColors.black,
     ),
     bodyMedium: GoogleFonts.openSans(

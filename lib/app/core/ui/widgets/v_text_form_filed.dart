@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:voleiatipico/app/core/theme/app_colors.dart';
+import 'package:voleiatipico/app/core/ui/helpers/form_helper.dart';
+import 'package:voleiatipico/app/core/ui/theme/app_colors.dart';
 
 class VTextFormfiled extends StatelessWidget {
   final TextEditingController controller;
@@ -24,6 +25,7 @@ class VTextFormfiled extends StatelessWidget {
         color: AppColors.black,
       ),
       validator: validator,
+      onTapOutside: (event) => context.unFocus(),
       decoration: InputDecoration(
         labelText: labelText,
         labelStyle: const TextStyle(

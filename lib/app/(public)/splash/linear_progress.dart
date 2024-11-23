@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:voleiatipico/app/core/theme/app_colors.dart';
+import 'package:voleiatipico/app/core/ui/theme/app_colors.dart';
 
 class LinearProgress extends StatelessWidget {
   const LinearProgress({super.key});

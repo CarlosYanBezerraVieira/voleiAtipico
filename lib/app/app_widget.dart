@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:routefly/routefly.dart';
-import 'package:voleiatipico/app/core/theme/app_colors.dart';
+import 'package:voleiatipico/app/core/ui/theme/app_colors.dart';
 
 import '../routes.g.dart';
-import 'core/theme/app_text.dart';
+import 'core/ui/theme/app_text.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
