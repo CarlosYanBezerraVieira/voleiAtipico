@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:voleiatipico/app/(public)/home/widgets/list_players.dart';
+import 'package:routefly/routefly.dart';
 import 'package:voleiatipico/app/core/get_registers.dart';
-import 'package:voleiatipico/app/modulos/players/models/player_model.dart';
+import 'package:voleiatipico/app/core/ui/theme/app_colors.dart';
 import 'package:voleiatipico/app/modulos/players/states/player_state.dart';
 import 'package:voleiatipico/app/modulos/players/store/player_store.dart';
-import 'package:voleiatipico/app/widgets/v_error.dart';
-import 'package:voleiatipico/app/widgets/v_init.dart';
-import 'package:voleiatipico/app/widgets/v_loading.dart';
+import 'package:voleiatipico/app/core/ui/widgets/v_error.dart';
+import 'package:voleiatipico/app/core/ui/widgets/v_init.dart';
+import 'package:voleiatipico/app/core/ui/widgets/v_loading.dart';
+import 'package:voleiatipico/routes.g.dart';
+import 'section_sucess_loader_players.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,9 +30,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
       body: ValueListenableBuilder<PlayerState>(
           valueListenable: playerStore,
           builder: (context, store, _) {
@@ -39,16 +38,9 @@ class _HomePageState extends State<HomePage> {
             } else if (store is PlayerStateLoading) {
               return const VLoading();
             } else if (store is PlayerStateSuccess) {
-              return SizedBox(
-                  height: 500,
-                  child: ListPlayers(
-                      players: store.players,
-                      onTap: (player) {
-                        playerStore.updatePlayer(player);
-                      },
-                      delete: (id) {
-                        playerStore.deletePlayer(id);
-                      }));
+              return SectionSucessLoaderPlayers(
+                  players: store.players,
+                  deletePlayer: playerStore.deletePlayer);
             } else if (store is PlayerStateError) {
               return VError(
                 message: store.message,
@@ -57,12 +49,11 @@ class _HomePageState extends State<HomePage> {
             return const SizedBox.shrink();
           }),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          playerStore.addPlayer(PlayerModel(
-              name: 'Teste', rate: 4.0, position: Position.central));
-        },
-        child: const Icon(Icons.add),
-      ),
+          onPressed: () {
+            Routefly.push(routePaths.home.createPlayer.createPlayer);
+          },
+          backgroundColor: AppColors.yellowPrimary,
+          child: const Icon(Icons.add)),
     );
   }
 }
