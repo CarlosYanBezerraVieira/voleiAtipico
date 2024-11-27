@@ -8,7 +8,10 @@ class PlayerModel {
   final String name;
   final double rate;
   final Position position;
+  final String pathImage;
   PlayerModel({
+    this.pathImage =
+        'https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2024/03/kaiju-no-8-character-visual-scaled-e1710452944157.jpg',
     this.id,
     required this.name,
     required this.rate,

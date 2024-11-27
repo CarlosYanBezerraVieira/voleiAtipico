@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:voleiatipico/app/core/ui/theme/app_colors.dart';
+import 'package:voleiatipico/app/core/ui/widgets/v_photo.dart';
+import 'package:voleiatipico/app/core/ui/widgets/v_simple_star_rating.dart';
 import 'package:voleiatipico/app/modulos/players/models/player_model.dart';
 
 class CardPlayer extends StatelessWidget {
@@ -14,17 +17,49 @@ class CardPlayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(player.name),
-      subtitle: Text(player.position.name),
-      onTap: () {
-        onTap(player);
-      },
-      trailing: IconButton(
-        icon: const Icon(Icons.delete),
-        onPressed: () {
-          delete(player.id!);
-        },
+    return Card(
+      color: AppColors.yellowCard,
+      child: InkWell(
+        onTap: () => onTap(player),
+        borderRadius: BorderRadius.circular(16),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  const VPhoto(
+                    pathOfNetwork:
+                        'https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2024/03/kaiju-no-8-character-visual-scaled-e1710452944157.jpg',
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          player.name,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                        Text(
+                          player.position.name,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                      ],
+                    ),
+                  ),
+                  VSimpleStarRating(
+                    rating: player.rate,
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
