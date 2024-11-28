@@ -3,8 +3,10 @@ import 'package:voleiatipico/app/core/ui/theme/app_colors.dart';
 
 class VButton extends StatelessWidget {
   final String label;
+  final bool loading;
   final void Function()? onPressed;
-  const VButton({super.key, required this.label, this.onPressed});
+  const VButton(
+      {super.key, required this.label, this.onPressed, this.loading = false});
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +15,21 @@ class VButton extends StatelessWidget {
         backgroundColor: AppColors.yellowPrimary,
       ),
       onPressed: onPressed,
-      child: Text(
-        label,
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 16,
+      child: Visibility(
+        visible: !loading,
+        replacement: const SizedBox(
+            width: 20,
+            height: 20,
+            child: CircularProgressIndicator(
+              strokeWidth: 2,
+              valueColor: AlwaysStoppedAnimation<Color>(AppColors.white),
+            )),
+        child: Text(
+          label,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+          ),
         ),
       ),
     );
