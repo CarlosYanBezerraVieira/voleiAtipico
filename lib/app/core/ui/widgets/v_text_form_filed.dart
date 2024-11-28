@@ -3,23 +3,26 @@ import 'package:voleiatipico/app/core/ui/helpers/form_helper.dart';
 import 'package:voleiatipico/app/core/ui/theme/app_colors.dart';
 
 class VTextFormfiled extends StatelessWidget {
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String labelText;
   final String hintText;
   final void Function(String)? onChanged;
   final String? Function(String?)? validator;
+  final String? initialValue;
 
   const VTextFormfiled(
       {super.key,
-      required this.controller,
+      this.controller,
       required this.labelText,
       required this.hintText,
       this.onChanged,
-      this.validator});
+      this.validator,
+      this.initialValue});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: initialValue,
       style: const TextStyle(
         fontSize: 16,
         color: AppColors.black,
