@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:routefly/routefly.dart';
-import 'package:voleiatipico/app/core/get_registers.dart';
+import 'package:voleiatipico/app/core/registers/get_registers.dart';
 import 'package:voleiatipico/app/core/ui/theme/app_colors.dart';
-import 'package:voleiatipico/app/modulos/players/states/player_state.dart';
-import 'package:voleiatipico/app/modulos/players/store/player_store.dart';
+import 'package:voleiatipico/app/modulos/players/states/home_state.dart';
 import 'package:voleiatipico/app/core/ui/widgets/v_error.dart';
 import 'package:voleiatipico/app/core/ui/widgets/v_init.dart';
 import 'package:voleiatipico/app/core/ui/widgets/v_loading.dart';
+import 'package:voleiatipico/app/modulos/players/store/home_player_store.dart';
 import 'package:voleiatipico/routes.g.dart';
 import 'section_sucess_loader_players.dart';
 
@@ -18,29 +18,32 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late PlayerStore playerStore;
+  late HomePlayerStore homePlayerStore;
 
   @override
   void initState() {
     super.initState();
-    playerStore = getIt<PlayerStore>();
-    playerStore.fetchPlayers();
+    homePlayerStore = getIt<HomePlayerStore>();
+    homePlayerStore.fetchPlayers();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ValueListenableBuilder<PlayerState>(
-          valueListenable: playerStore,
+      body: ValueListenableBuilder<HomeState>(
+          valueListenable: homePlayerStore,
           builder: (context, store, _) {
             if (store is PlayerStateInitial) {
-              return VInitPage(callback: playerStore.fetchPlayers);
+              return VInitPage(callback: homePlayerStore.fetchPlayers);
             } else if (store is PlayerStateLoading) {
               return const VLoading();
             } else if (store is PlayerStateSuccess) {
               return SectionSucessLoaderPlayers(
+                  fetchPlayers: () {
+                    homePlayerStore.fetchPlayers();
+                  },
                   players: store.players,
-                  deletePlayer: playerStore.deletePlayer);
+                  deletePlayer: homePlayerStore.deletePlayer);
             } else if (store is PlayerStateError) {
               return VError(
                 message: store.message,

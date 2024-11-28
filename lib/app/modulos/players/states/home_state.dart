@@ -1,41 +1,41 @@
 import 'package:voleiatipico/app/modulos/players/models/player_model.dart';
 
-abstract class PlayerState {
+abstract class HomeState {
   final List<PlayerModel> players;
-  PlayerState({required this.players});
+  HomeState({required this.players});
 
-  factory PlayerState.initial() => PlayerStateInitial(players: []);
-  PlayerState loading() {
+  factory HomeState.initial() => PlayerStateInitial(players: []);
+  HomeState loading() {
     return PlayerStateLoading(players: players);
   }
 
-  PlayerState success({List<PlayerModel>? players}) {
+  HomeState success({List<PlayerModel>? players}) {
     return PlayerStateSuccess(players: players ?? this.players);
   }
 
-  PlayerState error(String message, Object? error) {
+  HomeState error(String message, Object? error) {
     return PlayerStateError(
         message: message, exception: error, players: players);
   }
 }
 
 /// Representa o estado inicial do player
-class PlayerStateInitial extends PlayerState {
+class PlayerStateInitial extends HomeState {
   PlayerStateInitial({required super.players});
 }
 
 /// Representa o estado de carregamento dos players
-class PlayerStateLoading extends PlayerState {
+class PlayerStateLoading extends HomeState {
   PlayerStateLoading({required super.players});
 }
 
 /// Representa o estado de sucesso, com a lista de players
-class PlayerStateSuccess extends PlayerState {
+class PlayerStateSuccess extends HomeState {
   PlayerStateSuccess({required super.players});
 }
 
 /// Representa um erro com uma mensagem associada
-class PlayerStateError extends PlayerState {
+class PlayerStateError extends HomeState {
   final String message;
 
   final Object? exception;
