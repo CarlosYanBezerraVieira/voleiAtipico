@@ -28,10 +28,7 @@ class CardPlayer extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const VPhoto(
-                    pathOfNetwork:
-                        'https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2024/03/kaiju-no-8-character-visual-scaled-e1710452944157.jpg',
-                  ),
+                  VPhoto(pathOfNetwork: player.pathImage),
                   const SizedBox(
                     width: 8,
                   ),
