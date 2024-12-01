@@ -1,11 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:voleiatipico/app/core/mixin/image_picker_notifier_mixin.dart';
 import 'package:voleiatipico/app/modulos/players/models/player_model.dart';
-import 'package:voleiatipico/app/modulos/players/services/player_service.dart';
+import 'package:voleiatipico/app/modulos/players/services/player_service/player_service.dart';
 import 'package:voleiatipico/app/modulos/players/store/home_player_store.dart';
 import '../states/edit_player_state.dart';
 
-class EditPlayerStore extends ValueNotifier<EditPlayerState> {
+class EditPlayerStore extends ValueNotifier<EditPlayerState>
+    with ImagePickerNotifierMixin {
   final PlayerService _playerService;
   final HomePlayerStore _homePlayerStore;
 
@@ -26,6 +28,12 @@ class EditPlayerStore extends ValueNotifier<EditPlayerState> {
 
   void updateRate(double? rate) {
     value = value.success(value.player.copyWith(rate: rate));
+  }
+
+  void updateImage() async {
+    final image = await pickImageFromGallery();
+
+    value = value.success(value.player.copyWith(pathImage: image.path));
   }
 
   bool get loading => value is EditPlayerStateLoading;
@@ -56,5 +64,9 @@ class EditPlayerStore extends ValueNotifier<EditPlayerState> {
     } catch (e) {
       value = value.error(e.toString(), e);
     }
+  }
+
+  void clear() {
+    value = EditPlayerState.initial();
   }
 }

@@ -36,6 +36,12 @@ class _EditPlayerPageState extends State<EditPlayerPage> {
   }
 
   @override
+  void dispose() {
+    editPlayerStore.clear();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -95,10 +101,10 @@ class _EditPlayerPageState extends State<EditPlayerPage> {
                               const SizedBox(
                                 height: 32,
                               ),
-                              const Center(
+                              Center(
                                   child: VPhoto(
-                                pathOfNetwork:
-                                    'https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2024/03/kaiju-no-8-character-visual-scaled-e1710452944157.jpg',
+                                onTap: editPlayerStore.updateImage,
+                                pathOfAsserts: state.player.pathImage,
                                 size: 150,
                               )),
                               const SizedBox(height: 32),

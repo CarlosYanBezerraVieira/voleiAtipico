@@ -7,8 +7,8 @@ import 'package:voleiatipico/app/core/ui/widgets/v_dropdown_positions.dart';
 import 'package:voleiatipico/app/core/ui/widgets/v_photo.dart';
 import 'package:voleiatipico/app/core/ui/widgets/v_simple_star_rating.dart';
 import 'package:voleiatipico/app/core/ui/widgets/v_text_form_filed.dart';
-import 'package:voleiatipico/app/modulos/players/store/create_player_store.dart';
 import 'package:voleiatipico/app/modulos/players/states/create_player_state.dart';
+import 'package:voleiatipico/app/modulos/players/store/create_player_store.dart';
 import 'package:voleiatipico/routes.g.dart';
 
 class CreatePlayerPage extends StatefulWidget {
@@ -26,6 +26,12 @@ class _CreatePlayerPageState extends State<CreatePlayerPage> {
   void initState() {
     super.initState();
     createPlayerStore = getIt<CreatePlayerStore>();
+  }
+
+  @override
+  void dispose() {
+    createPlayerStore.clean();
+    super.dispose();
   }
 
   @override
@@ -89,10 +95,11 @@ class _CreatePlayerPageState extends State<CreatePlayerPage> {
                             const SizedBox(
                               height: 32,
                             ),
-                            const Center(
+                            Center(
                                 child: VPhoto(
-                              pathOfNetwork:
-                                  'https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2024/03/kaiju-no-8-character-visual-scaled-e1710452944157.jpg',
+                              pathOfAsserts: state.player.pathImage,
+                              onTap: () async =>
+                                  createPlayerStore.updateImage(),
                               size: 150,
                             )),
                             const SizedBox(height: 32),
