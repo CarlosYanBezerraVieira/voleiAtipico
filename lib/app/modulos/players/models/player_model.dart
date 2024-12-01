@@ -10,8 +10,7 @@ class PlayerModel {
   final Position position;
   final String pathImage;
   PlayerModel({
-    this.pathImage =
-        'https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2024/03/kaiju-no-8-character-visual-scaled-e1710452944157.jpg',
+    this.pathImage = '',
     this.id,
     required this.name,
     required this.rate,
@@ -24,6 +23,7 @@ class PlayerModel {
       'name': name,
       'rate': rate,
       'position': position.name,
+      'pathImage': pathImage,
     };
   }
 
@@ -41,6 +41,7 @@ class PlayerModel {
       id: map['id'] ?? 0,
       name: map['name'] ?? "",
       rate: map['rate'] ?? 0.0,
+      pathImage: map['pathImage'] ?? "",
       position: Position.values
           .firstWhere((element) => element.name == map['position']),
     );
@@ -52,20 +53,23 @@ class PlayerModel {
       PlayerModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() =>
-      'PlayerModel(name: $name, rate: $rate, position: $position)';
+  String toString() {
+    return 'PlayerModel(id: $id, name: $name, rate: $rate, position: $position, pathImage: $pathImage)';
+  }
 
   PlayerModel copyWith({
     int? id,
     String? name,
     double? rate,
     Position? position,
+    String? pathImage,
   }) {
     return PlayerModel(
       id: id ?? this.id,
       name: name ?? this.name,
       rate: rate ?? this.rate,
       position: position ?? this.position,
+      pathImage: pathImage ?? this.pathImage,
     );
   }
 }
