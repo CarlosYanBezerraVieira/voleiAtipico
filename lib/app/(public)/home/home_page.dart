@@ -39,9 +39,6 @@ class _HomePageState extends State<HomePage> {
               return const VLoading();
             } else if (store is PlayerStateSuccess) {
               return SectionSucessLoaderPlayers(
-                  fetchPlayers: () {
-                    homePlayerStore.fetchPlayers();
-                  },
                   players: store.players,
                   deletePlayer: homePlayerStore.deletePlayer);
             } else if (store is PlayerStateError) {
