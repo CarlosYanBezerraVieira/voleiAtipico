@@ -28,7 +28,9 @@ class CardPlayer extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  VPhoto(pathOfNetwork: player.pathImage),
+                  VPhoto(
+                    pathOfAsserts: player.pathImage,
+                  ),
                   const SizedBox(
                     width: 8,
                   ),
