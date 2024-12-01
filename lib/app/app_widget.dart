@@ -12,6 +12,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       theme: ThemeData(
+        dividerColor: AppColors.yellowLite,
         scaffoldBackgroundColor: AppColors.yellowLite,
         textTheme: AppTextTheme.textTheme,
         colorSchemeSeed: const Color(0xFFED9009),

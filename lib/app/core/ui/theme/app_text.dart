@@ -49,13 +49,13 @@ class AppTextTheme {
     // Subtítulos
     titleLarge: GoogleFonts.openSans(
       fontSize: 16.0,
-      fontWeight: FontWeight.w400,
-      color: Colors.grey,
+      fontWeight: FontWeight.bold,
+      color: AppColors.black,
     ),
     titleMedium: GoogleFonts.openSans(
       fontSize: 14.0,
-      fontWeight: FontWeight.w400,
-      color: Colors.grey,
+      fontWeight: FontWeight.bold,
+      color: AppColors.black,
     ),
 
     // Botões
