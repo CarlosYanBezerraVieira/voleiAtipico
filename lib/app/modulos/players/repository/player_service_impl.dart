@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'package:voleiatipico/app/core/constant/keys_of_shared_preferences.dart';
 import 'package:voleiatipico/app/data/data_interface.dart';
 import 'package:voleiatipico/app/modulos/players/models/player_model.dart';
-import 'package:voleiatipico/app/modulos/players/services/player_service/player_service.dart';
+import 'package:voleiatipico/app/modulos/players/services/player_service.dart';
 
 class PlayerServiceImpl implements PlayerService {
   final DataInterface dataInterface;

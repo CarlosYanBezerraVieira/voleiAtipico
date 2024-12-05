@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:voleiatipico/app/core/mixin/image_picker_notifier_mixin.dart';
+import 'package:voleiatipico/app/modulos/home/store/home_player_store.dart';
 import 'package:voleiatipico/app/modulos/players/models/player_model.dart';
-import 'package:voleiatipico/app/modulos/players/services/player_service/player_service.dart';
+import 'package:voleiatipico/app/modulos/players/services/player_service.dart';
 import 'package:voleiatipico/app/modulos/players/states/create_player_state.dart';
-import 'package:voleiatipico/app/modulos/players/store/home_player_store.dart';
 
 class CreatePlayerStore extends ValueNotifier<CreatePlayerState>
     with ImagePickerNotifierMixin {

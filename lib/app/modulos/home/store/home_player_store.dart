@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:voleiatipico/app/modulos/players/services/player_service/player_service.dart';
-import 'package:voleiatipico/app/modulos/players/states/home_state.dart';
+import 'package:voleiatipico/app/modulos/players/services/player_service.dart';
+import 'package:voleiatipico/app/modulos/home/state/home_state.dart';
 
 class HomePlayerStore extends ValueNotifier<HomeState> {
   final PlayerService _playerService;

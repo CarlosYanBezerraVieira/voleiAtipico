@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:routefly/routefly.dart';
 import 'package:voleiatipico/app/core/registers/get_registers.dart';
 import 'package:voleiatipico/app/core/ui/theme/app_colors.dart';
-import 'package:voleiatipico/app/modulos/players/states/home_state.dart';
+import 'package:voleiatipico/app/modulos/home/state/home_state.dart';
 import 'package:voleiatipico/app/core/ui/widgets/v_error.dart';
 import 'package:voleiatipico/app/core/ui/widgets/v_init.dart';
 import 'package:voleiatipico/app/core/ui/widgets/v_loading.dart';
-import 'package:voleiatipico/app/modulos/players/store/home_player_store.dart';
+import 'package:voleiatipico/app/modulos/home/store/home_player_store.dart';
 import 'package:voleiatipico/routes.g.dart';
 import 'section_sucess_loader_players.dart';
 
@@ -33,15 +33,15 @@ class _HomePageState extends State<HomePage> {
       body: ValueListenableBuilder<HomeState>(
           valueListenable: homePlayerStore,
           builder: (context, store, _) {
-            if (store is PlayerStateInitial) {
+            if (store is HomeStateInitial) {
               return VInitPage(callback: homePlayerStore.fetchPlayers);
-            } else if (store is PlayerStateLoading) {
+            } else if (store is HomeStateLoading) {
               return const VLoading();
-            } else if (store is PlayerStateSuccess) {
+            } else if (store is HomeStateSuccess) {
               return SectionSucessLoaderPlayers(
                   players: store.players,
                   deletePlayer: homePlayerStore.deletePlayer);
-            } else if (store is PlayerStateError) {
+            } else if (store is HomeStateError) {
               return VError(
                 message: store.message,
               );
